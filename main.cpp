@@ -2,31 +2,29 @@
 #include <iostream>
 using namespace std;
 
-// convert string or data to binary
-string binary(string str) {
-    string bin = "";
+
+vector<int> stringToBinary(const string& str) {
+    vector<int> bin;
+
     for(int i = 0; i < str.size(); i++) {
-        int val = int(str[i]);
-        
-        while(val > 0) {
-            (val % 2)? bin.push_back('1') : bin.push_back('0');
-            val /= 2;
+        int character = int(str[i]);
+
+        for(int j = 7; j >= 0; j--) {
+            int bit = (character >> j) & 1;
+            bin.push_back(bit);
         }
-        reverse(bin.begin(), bin.end());
     }
     return bin;
 }
 
 int main() {
     string str;
-    str = "HI THIS IS SATVIK BATRA";
+    str = "Hi This is Satvik Batra";
 
-    string bin = binary(str);
-    char arr[bin.length()];
-    for(int i = 0; i < bin.length(); i++) {
-        arr[i] = bin[i];
+    vector<int> bin = stringToBinary(str);
+    for(int i : bin) {
+        cout << i;
     }
-
-    cout << sizeof(arr)/sizeof(arr[0]) << endl;
-    cout << bin << endl;
+    cout << endl;
+    
 }
